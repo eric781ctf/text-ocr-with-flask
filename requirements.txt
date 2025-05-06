@@ -1,0 +1,6 @@
+flask
+cnocr
+pillow
+numpy
+pandas
+opencv-python

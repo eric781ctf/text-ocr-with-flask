@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>圖片文字辨識</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: url('https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=1400&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
 
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 600px;
+            margin: 80px auto;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            margin: 15px 0;
+        }
+
+        .btn {
+            background-color: #4caf50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        img {
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .error {
+            color: #ff7070;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>圖片文字辨識</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" id="image"
+               accept=".jpg,.jpeg,.png"
+               required
+               title="僅支援圖片格式：jpg, jpeg, png"><br>
+        <small style="color: gray;">允許的圖片格式：.jpg, .jpeg, .png</small><br><br>
+        <button type="submit" class="btn">上傳並辨識</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if original_image %}
+        <h3>原始圖片</h3>
+        <img src="{{ original_image }}" alt="原始圖片">
+    {% endif %}
+
+    {% if result_image %}
+        <h3>辨識結果</h3>
+        <img src="{{ result_image }}" alt="結果圖片">
+    {% endif %}
+</div>
+</body>
+</html>
